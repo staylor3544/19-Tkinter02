@@ -15,7 +15,7 @@ import tkinter as tk
 #   Once you have done this, then change the above _TODO_ to DONE.
 #
 #
-# TODO: 2. (4 pts)
+# DONE: 2. (4 pts)
 #
 #   Now, we are going to practice all of our widgets.
 #
@@ -90,24 +90,6 @@ single_line_entry.pack(pady = 5)
 
 single_line_entry.insert(0,"You cannot type a lot here :(")
 
-# frame 1:
-#   frame bg : #FFC0CB
-#   label bg : 	#F88379
-#   label txt: #770737
-#   button bg : #F3CFC6
-#   button txt : #E0115F
-#   txt bg: #FAA0A0
-#   txt txt : #811331
-
-
-
-# frame 2:
-#   frame bg : #FAA0A0
-#   label bg : #E0115F
-#   label txt: #F88379
-#   txt bg: #811331
-#   txt txt : #F3CFC6
-
 frm_2 = tk.Frame(
     window,
     bg = "#FAA0A0",
@@ -133,7 +115,12 @@ lbl_2 = tk.Label(
 )
 lbl_2.pack(padx = 5, pady = 5)
 
-heart = tk.PhotoImage(
+scroller = tk.Scrollbar(
+    frm_2,
+    orient = "vertical",
+    bg = "#770737"
+)
+scroller.pack(side = "right", fill = "y")
 
 text_box = tk.Text(
     frm_2,
@@ -144,11 +131,13 @@ text_box = tk.Text(
     bg = "#811331",
     fg = "#F3CFC6",
     borderwidth = 3,
+    yscrollcommand = scroller.set
 )
+text_box.insert("1.0","You can type a lot here! ;)\n\n\n\n\n\n\n\n\n\n")
+text_box.insert("10.0","You can see me if you use the bar!")
+
+scroller.configure(command = text_box.yview)
 text_box.pack()
 
-text_box.insert("1.0","You can type a lot here! ;)")
-
-
-
 window.mainloop()
+
